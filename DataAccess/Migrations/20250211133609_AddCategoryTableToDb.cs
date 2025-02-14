@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace MyWeb_MVC.Migrations
+namespace Web.DataAccess.Migrations
 {
     /// <inheritdoc />
     public partial class AddCategoryTableToDb : Migration

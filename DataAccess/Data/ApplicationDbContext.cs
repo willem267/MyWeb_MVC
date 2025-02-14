@@ -1,7 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using MyWeb_MVC.Models;
+using Web.Models;
+//using Web.Models.Models;
 
-namespace MyWeb_MVC.Data
+namespace Web.DataAccess.Data
 {
     public class ApplicationDbContext : DbContext
     {
