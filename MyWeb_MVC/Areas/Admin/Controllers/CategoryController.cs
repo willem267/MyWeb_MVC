@@ -9,14 +9,22 @@ namespace MyWeb_MVC.Areas.Admin.Controllers
     public class CategoryController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
+<<<<<<< HEAD:MyWeb_MVC/Areas/Admin/Controllers/CategoryController.cs
 
+=======
+        
+>>>>>>> ef64dee1b4d9957718019ba78e0014a01587bba0:MyWeb_MVC/Controllers/CategoryController.cs
         public CategoryController(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }
         public IActionResult Index()
         {
+<<<<<<< HEAD:MyWeb_MVC/Areas/Admin/Controllers/CategoryController.cs
 
+=======
+            
+>>>>>>> ef64dee1b4d9957718019ba78e0014a01587bba0:MyWeb_MVC/Controllers/CategoryController.cs
             List<Category> objCategoryList = _unitOfWork.Category.GetAll().ToList();
             return View(objCategoryList);
         }
@@ -49,8 +57,13 @@ namespace MyWeb_MVC.Areas.Admin.Controllers
             {
                 return NotFound();
             }
+<<<<<<< HEAD:MyWeb_MVC/Areas/Admin/Controllers/CategoryController.cs
             Category? cat = _unitOfWork.Category.Get(u => u.Id == id);
             if (cat == null)
+=======
+            Category? cat = _unitOfWork.Category.Get(u=>u.Id==id);
+            if(cat == null)
+>>>>>>> ef64dee1b4d9957718019ba78e0014a01587bba0:MyWeb_MVC/Controllers/CategoryController.cs
             {
                 return NotFound();
             }
@@ -76,7 +89,11 @@ namespace MyWeb_MVC.Areas.Admin.Controllers
             {
                 return NotFound();
             }
+<<<<<<< HEAD:MyWeb_MVC/Areas/Admin/Controllers/CategoryController.cs
             Category? cat = _unitOfWork.Category.Get(u => u.Id == id);
+=======
+            Category? cat = _unitOfWork.Category.Get(u=>u.Id==id);
+>>>>>>> ef64dee1b4d9957718019ba78e0014a01587bba0:MyWeb_MVC/Controllers/CategoryController.cs
             if (cat == null)
             {
                 return NotFound();
@@ -87,7 +104,11 @@ namespace MyWeb_MVC.Areas.Admin.Controllers
         public IActionResult DeletePOST(int? id)
         {
             Category? obj = _unitOfWork.Category.Get(u => u.Id == id);
+<<<<<<< HEAD:MyWeb_MVC/Areas/Admin/Controllers/CategoryController.cs
             if (obj == null)
+=======
+            if (obj== null)
+>>>>>>> ef64dee1b4d9957718019ba78e0014a01587bba0:MyWeb_MVC/Controllers/CategoryController.cs
             {
                 return NotFound();
             }
