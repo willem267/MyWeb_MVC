@@ -18,10 +18,7 @@ namespace Web.DataAccess.Repository
         {
             _db = db;   
             this.dbSet = _db.Set<T>();
-<<<<<<< HEAD
             _db.Products.Include(p => p.Category);
-=======
->>>>>>> ef64dee1b4d9957718019ba78e0014a01587bba0
 
         }
         public void Add(T entity)
@@ -29,18 +26,13 @@ namespace Web.DataAccess.Repository
             dbSet.Add(entity);
         }
 
-<<<<<<< HEAD
         public T Get(Expression<Func<T, bool>> filter, string? includeProperties = null)
-=======
-        public T Get(Expression<Func<T, bool>> filter)
->>>>>>> ef64dee1b4d9957718019ba78e0014a01587bba0
         {
             IQueryable<T> query = dbSet;
             query = query.Where(filter);
             return query.FirstOrDefault();
         }
 
-<<<<<<< HEAD
         public IEnumerable<T> GetAll(string? includeProperties = null)
         {
            IQueryable<T> query = dbSet;
@@ -60,11 +52,6 @@ namespace Web.DataAccess.Repository
                 }
 
             }
-=======
-        public IEnumerable<T> GetAll()
-        {
-           IQueryable<T> query = dbSet;
->>>>>>> ef64dee1b4d9957718019ba78e0014a01587bba0
             return query.ToList();
         }
 
