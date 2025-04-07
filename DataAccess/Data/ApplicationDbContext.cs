@@ -1,10 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Web.Models;
 //using Web.Models.Models;
 
 namespace Web.DataAccess.Data
 {
-    public class ApplicationDbContext : DbContext
+    public class ApplicationDbContext : IdentityDbContext
     {
         //Constructor
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext>options) : base(options)
@@ -13,13 +14,42 @@ namespace Web.DataAccess.Data
         }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Product> Products { get; set; }
+        public DbSet<ApplicationUser> ApplicationUsers { get; set; }
+        public DbSet<Company> Companies { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            // Cấu hình thực thể Category và thêm dữ liệu ban đầu
+            base.OnModelCreating(modelBuilder);
+            
             modelBuilder.Entity<Category>().HasData(
                 new Category { Id = 1, Name = "Action", DisplayOrder = 1 },
                 new Category { Id = 2, Name = "SciFi", DisplayOrder = 2 },
                 new Category { Id = 3, Name = "History", DisplayOrder = 3 }
+                );
+            modelBuilder.Entity<Company>().HasData(
+                new Company { Id = 1, Name = "Tech Solution", StreetAdress="123 Tech St", City="Tech City",
+                    PostalCode="1212", State="IL", PhoneNumber="0123123123"},
+                 new Company
+                 {
+                     Id = 2,
+                     Name = "Vivid Books",
+                     StreetAdress = "99 Book St",
+                     City = "Vid City",
+                     PostalCode = "6767",
+                     State = "IL",
+                     PhoneNumber = "01234123"
+                 },
+                  new Company
+                  {
+                      Id = 3,
+                      Name = "Readers Club",
+                      StreetAdress = "99 Main St",
+                      City = "Holy land",
+                      PostalCode = "9990",
+                      State = "NY",
+                      PhoneNumber = "11223345566"
+                  }
+
+
                 );
             modelBuilder.Entity<Product>().HasData(
                 new Product
