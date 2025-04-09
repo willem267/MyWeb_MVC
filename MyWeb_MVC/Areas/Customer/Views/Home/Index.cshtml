@@ -1,4 +1,5 @@
-﻿@model IEnumerable<Product>
+﻿@using System.Globalization
+@model IEnumerable<Product>
 
 
 <div class="row pb-3">
@@ -18,11 +19,11 @@
 								</p>
 							</div>
 							<div class="pl-1">
-								<p class=" text-dark opacity-75 text-center mb-0"> <span class="text-decoration-line-through">@product.Price.ToString("c")</span></p>
+								<p class=" text-dark opacity-75 text-center mb-0"> <span class="text-decoration-line-through">@product.Price.ToString("c", CultureInfo.GetCultureInfo("en-US"))</span></p>
 
 							</div>
 							<div class="pl-1">
-								<p class=" text-dark opacity-75 text-center">As low as: <span>@product.Price100.ToString("c")</span></p>
+								<p class=" text-dark opacity-75 text-center">As low as: <span>@product.Price100.ToString("c", CultureInfo.GetCultureInfo("en-US"))</span></p>
 
 							</div>
 						</div>
