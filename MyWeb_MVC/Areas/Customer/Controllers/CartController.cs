@@ -146,7 +146,8 @@ namespace MyWeb_MVC.Areas.Customer.Controllers
                 }
                 var service = new Stripe.Checkout.SessionService();
                 Session session = service.Create(options);
-                _uniOfWork.OrderHeader.UpdateStripePaymentId(ShoppingCartVM.OrderHeader.Id, session.Id, session.PaymentStatus);
+                _uniOfWork.OrderHeader.UpdateStripePaymentId(ShoppingCartVM.OrderHeader.Id, session.Id, session.PaymentIntentId);
+                
                 _uniOfWork.Save();
 
                 Response.Headers.Add("Location", session.Url);
@@ -164,7 +165,7 @@ namespace MyWeb_MVC.Areas.Customer.Controllers
                 Session session = service.Get(orderHeader.SessionId);
                 if (session.PaymentStatus.ToLower() == "paid")
                 {
-                    _uniOfWork.OrderHeader.UpdateStripePaymentId(id, session.Id, session.PaymentStatus);
+                    _uniOfWork.OrderHeader.UpdateStripePaymentId(id, session.Id, session.PaymentIntentId);
                     _uniOfWork.OrderHeader.UpdateStatus(id, SD.StatusApproved, SD.PaymentStatusApproved);
                     _uniOfWork.Save();
                 }
