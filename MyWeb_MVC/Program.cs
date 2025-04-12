@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Identity;
 using Web.Utility;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Stripe;
+using Web.DataAccess.DbInitializer;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -42,6 +43,7 @@ builder.Services.AddSession(options =>
 });
 
 builder.Services.AddRazorPages();
+builder.Services.AddScoped<IDbInitializer, DbInitializer>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IEmailSender, EmailSender>();
 
@@ -62,9 +64,20 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 app.UseSession();
+seedDatabase(); //seed database
 app.MapRazorPages();
 app.MapControllerRoute(
     name: "default",
     pattern: "{area=Customer}/{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
+
+//DbInitializer
+void seedDatabase()
+{
+    using (var scope = app.Services.CreateScope())
+    {
+       var dbInitializer = scope.ServiceProvider.GetRequiredService<IDbInitializer>();
+        dbInitializer.Initialize();
+    }
+}
