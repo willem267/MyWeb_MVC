@@ -33,6 +33,12 @@ builder.Services.AddAuthentication().AddFacebook(options =>
     options.AppSecret = builder.Configuration["Facebook:AppSecret"];
 
 });
+builder.Services.AddAuthentication().AddGoogle(options =>
+{
+    options.ClientId = builder.Configuration["Google:ClientID"];
+    options.ClientSecret = builder.Configuration["Google:ClientSecret"];
+
+});
 //add session
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession(options =>

@@ -30,10 +30,11 @@ namespace Web.DataAccess.Repository
                 objFromdb.Price50 = obj.Price50;
                 objFromdb.Price100 = obj.Price100;
                 objFromdb.Description = obj.Description;
-                if (obj.ImageUrl != null)
-                {
-                    objFromdb.ImageUrl = obj.ImageUrl;
-                }
+                objFromdb.ProductImages = obj.ProductImages;
+                //if (obj.ImageUrl != null)
+                //{
+                //    objFromdb.ImageUrl = obj.ImageUrl;
+                //}
             }
         }
     }
